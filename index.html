@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <label>Half this number...
+    <input type="number" id="half-input">
+  </label>
+  <button id="half-button">Calculate</button>
+  <br><br>
+
+  <label>Give me your name and I'll give you a fortune...
+    <input id="fortune-input">
+  </label>
+  <button id="fortune-button">Get Fortune</button>
+  <br><br>
+  <div id="fortune-output"></div>
+
+  <script>
+    var calculateButton;
+    var calculateInput;
+    var fortuneButton;
+    var fortuneInput;
+    var yourFortune;
+    var fortunes = ["you will get an A on a test.", "you will be rich.", "good fortune will be yours.", "you will have many friends.", "do a good deed today.", "someone will call you today.", "you will go to a party soon.", "be careful on Tuesday.", "you will have very good luck today."];
+    var textDecorations = ["none", "overline", "line-through", "underline"];
+
+    window.addEventListener("DOMContentLoaded", function() {
+
+  calculateButton = document.getElementById('half-button');
+  calculateInput = document.getElementById('half-input');
+  // var calculateOutput = document.getElementById('')
+  fortuneButton = document.getElementById('fortune-button');
+  fortuneInput = document.getElementById('fortune-input');
+
+  calculateButton.addEventListener("click", halfNumber);
+  fortuneButton.addEventListener("click", fortune);
+  fortuneButton.addEventListener("click", restyle);
+
+    });
+
+    function halfNumber (num) {
+      var num = calculateInput.value;
+      console.log(num);
+      var halfInput = num / 2;
+      result = "Half of " + num + " is " + halfInput + ".";
+      console.log(result);
+      alert(result);
+    }
+
+// THIS POST HELPED: https://stackoverflow.com/questions/42056818/how-can-i-select-a-random-string-from-an-array-and-assign-it-to-a-variable
+    function fortune (name) {
+      var name = fortuneInput.value;
+      // console.log(name);
+      var randomizer = Math.floor(Math.random() * fortunes.length)
+      // console.log(randomizer);
+      yourFortune = document.getElementById('fortune-output');
+      yourFortune.innerText = name + ", " + fortunes[randomizer];
+      // console.log(yourFortune);
+
+    }
+
+    function restyle () {
+      var randomRed = Math.random() * 255;
+      var randomGreen = Math.random() * 255;
+      var randomBlue = Math.random() * 255;
+      var fortuneText = document.getElementById('fortune-output');
+      var colorRestyled = "rgb(" + randomRed + "," + randomGreen + "," + randomBlue + ")";
+      var decorRandomizer = Math.floor(Math.random() * textDecorations.length)
+      // var randomShadow = Math.floor(Math.random() * 10);
+      // console.log(colorRestyled);
+
+      fortuneText.style.color = colorRestyled;
+      fortuneText.style.fontSize = Math.floor(Math.random() * 50 + 20) + "px";
+      fortuneText.style.textDecoration =  textDecorations[decorRandomizer];
+    }
+
+  </script>
+
+</body>
+</html>
